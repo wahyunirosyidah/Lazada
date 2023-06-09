@@ -9,14 +9,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.pbob.lazada.User.User;
+import com.pbob.lazada.User.UserRepository;
+
 @Controller
 public class CustomerController {
 
     private final CustomerService customerService;
+    private final UserRepository userRepository;
 
-    public CustomerController(CustomerService customerService) {
+
+    public CustomerController(CustomerService customerService, UserRepository userRepository) {
         this.customerService = customerService;
+        this.userRepository = userRepository;
     }
+
 
     @GetMapping("/customer/")
     public String index(Model model) {
@@ -33,15 +40,37 @@ public class CustomerController {
 
     @PostMapping("/customer/simpan")
     public String simpan(@ModelAttribute Customer customer) {
+        // Mengambil username dan password dari request
+    String username = customer.getUser().getUsername();
+    String password = customer.getUser().getPassword();
+
+    // Membuat objek User baru dan mengeset username dan password
+    User user = new User();
+    user.setUsername(username);
+    user.setPassword(password);
+
+    // Menyimpan objek User ke dalam UserRepository
+    userRepository.save(user);
+
+    // Mengeset objek User pada objek Customer
+    customer.setUser(user);
+
         this.customerService.simpan(customer);
         return "redirect:/customer/";
     }
 
     @GetMapping("/customer/view/{id}")
     public String view(@PathVariable Long id, Model model) {
+        
+        
         Customer customer = this.customerService.ambilById(id);
         model.addAttribute("datacustomer", customer);
         return "customer/view";
     }
+    
+
+
+
+
 
 }
