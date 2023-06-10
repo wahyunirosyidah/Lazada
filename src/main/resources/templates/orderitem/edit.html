@@ -32,57 +32,29 @@
     </div>
     <div class="row justify-content-start align-items-baseline">
         <div class="col-6">
-          <!-- th object tu untuk binding -->
-          <!-- product di objek iru harus sama di controller -->
-            <form th:action="@{/product/simpan}" th:object="${product}" method="post">
+            <form th:action="@{'/orderitem/update/'+${orderitem.id}}" th:object="${orderitem}" method="post">
               <div class="mb-3">
-                <label class="form-label">Kategori</label>
+                <label class="form-label">Order ID</label>
                 <!-- input name sesuai dengan nama atribut -->
-                <input name="user.role" type="text" class="form-control" placeholder="Masukkan nama produk">
+                <input name="orderId" type="number" class="form-control" placeholder="Masukkan nama produk" th:value="${orderitem.orderId}" >
                 <!-- <input id.use="id" type="hidden"  th:value="${user.id}" > -->
               </div>
-              <div class="mb-3">
-                <label class="form-label">Nama Produk</label>
-                <!-- input name sesuai dengan nama atribut -->
-                <input name="nama" type="text" class="form-control" placeholder="Masukkan nama produk">
-              </div>
-            <!-- <div class="mb-3">
-                <label class="form-label">Brand</label>
-                <input name="brand" type="text" class="form-control" placeholder="Masukan brand dari produk"> -->
+              <div class="mb-3 col-4">
+                <label class="form-label">Product ID</label>
+                <input name="productId" type="number" class="form-control" placeholder="Masukan harga" th:value="${orderitem.productId}">
               </div>
               <div class="mb-3 col-4">
-                <label class="form-label">Harga (Rp.)</label>
-                <input name="harga" type="text" class="form-control" placeholder="Masukan harga">
+                <label class="form-label">Jumlah</label>
+                <input name="jumlah" type="number" class="form-control" placeholder="Masukan jumlah produk" th:value="${orderitem.jumlah}">
               </div>
-              <div class="mb-3 col-4">
-                <label class="form-label">Jumlah Barang</label>
-                <input name="stok" type="text" class="form-control" placeholder="Masukan jumlah produk">
-              </div>
-              <div class="col-6">
-                <div class="mb-3">
-                  <label  class="form-label">Deskripsi</label>
-                  <textarea name="deskripsi" type="text" class="form-control" rows="10"></textarea>
-              </div>
-              
                   <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary me-2">Simpan</button>
-                    <a th:href="@{/product/}" class="btn btn-secondary">Batal</a></div>
-                
-
-        <!-- <div class="col-6">
-          <div class="mb-3">
-            <label  class="form-label">Deskripsi</label>
-            <textarea name="deskripsi" type="text" class="form-control" rows="10"></textarea>
-          </div>
-        </div> -->
+                    <a th:href="@{/orderitem/}" class="btn btn-secondary">Batal</a></div>
       </form>
-              
     </div>
-    </div>
-    
+    </div> 
   </div>
-    
-    
+
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">

@@ -17,7 +17,7 @@ public class ProductCategory {
     private Long id;
     private String kategori;
 
-
+    
 
     public ProductCategory() {
     }
