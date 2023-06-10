@@ -1,12 +1,9 @@
 package com.pbob.lazada.Product;
 
-import com.pbob.lazada.ProductCategory.ProductCategory;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 /**
@@ -31,12 +28,10 @@ public class Product {
     private String deskripsi;
     private String harga;
     private String stok;
-
-    @ManyToOne
-    private ProductCategory category;
     
     public Product() {
     }
+
 
     //membuat kontruktor
     public Product(String nama, String deskripsi, String harga, String stok) {
