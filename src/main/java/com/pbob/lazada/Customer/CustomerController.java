@@ -43,11 +43,13 @@ public class CustomerController {
         // Mengambil username dan password dari request
     String username = customer.getUser().getUsername();
     String password = customer.getUser().getPassword();
+    String role = customer.getUser().getRole();
 
     // Membuat objek User baru dan mengeset username dan password
     User user = new User();
     user.setUsername(username);
     user.setPassword(password);
+    user.setRole(role);
 
     // Menyimpan objek User ke dalam UserRepository
     userRepository.save(user);

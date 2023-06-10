@@ -40,6 +40,7 @@
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">#</th>
+                    <!-- <th scope="col">Kategori</th> -->
                     <th scope="col">Nama</th>
                     <th scope="col">Harga</th>
                     <th scope="col">Stok</th>
@@ -52,6 +53,7 @@
                   <!-- yang di {} diambil dari model index controler -->
                   <tr th:each="item : ${datanya}">
                     <th scope="row" th:text="${item.id}">1</th>
+                    <!-- <td th:text="${item.category.kategori}">Mark</td> -->
                     <td th:text="${item.nama}">Mark</td>
                     <td th:text="${item.harga}">Otto</td>
                     <td th:text="${item.stok}">Otto</td>
