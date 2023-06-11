@@ -1,9 +1,14 @@
 package com.pbob.lazada.Product;
 
+import com.pbob.lazada.ProductCategory.ProductCategory;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 /**
@@ -28,18 +33,33 @@ public class Product {
     private String deskripsi;
     private String harga;
     private String stok;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "kategori_id")
+    private ProductCategory kategori;
     
     public Product() {
     }
 
 
     //membuat kontruktor
-    public Product(String nama, String deskripsi, String harga, String stok) {
+    // public Product(String nama, String deskripsi, String harga, String stok) {
+    //     this.nama = nama;
+    //     this.deskripsi = deskripsi;
+    //     this.harga = harga;
+    //     this.stok = stok;
+    // }
+
+
+
+    public Product(String nama, String deskripsi, String harga, String stok, ProductCategory kategori) {
         this.nama = nama;
         this.deskripsi = deskripsi;
         this.harga = harga;
         this.stok = stok;
+        this.kategori = kategori;
     }
+
 
     
 }

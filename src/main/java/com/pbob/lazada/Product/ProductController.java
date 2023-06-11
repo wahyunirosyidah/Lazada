@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.pbob.lazada.ProductCategory.ProductCategory;
+import com.pbob.lazada.ProductCategory.ProductCategoryRepository;
 
 
 //karena ini buat web, kalau backend pakai RestAPI nati pakai RestController
@@ -16,10 +20,19 @@ public class ProductController {
     //mengatur rute
 
     private final ProductService productService;
+     private ProductCategoryRepository productCategoryRepository;
+     private ProductRepository productRepository;
 
-    public ProductController(ProductService productService) {
+
+
+    public ProductController(ProductService productService, ProductCategoryRepository productCategoryRepository, ProductRepository productRepository) {
         this.productService = productService;
+        this.productCategoryRepository = productCategoryRepository;
+        this.productRepository = productRepository;
     }
+    
+
+
     //pakai ini utnuk mengaskses and point "/product/"  -GET
     @GetMapping("/product/")
     public String index(Model model){
@@ -36,17 +49,48 @@ public class ProductController {
 
     //MENAMPILKAN form tambah
     @GetMapping("/product/tambah")
-    public String form_tambah(){
+    public String form_tambah(Model model){
+        List<ProductCategory> kategori = productCategoryRepository.findAll();
+        model.addAttribute("kategori", kategori);
+        model.addAttribute("product", new Product());
         return "product/tambah";
     }
 
     //menyimpan data yang ditambahkan
     @PostMapping("/product/simpan")
-    public String simpan(@ModelAttribute Product product){
-        //menjalankan perintah di fungsi 
-        this.productService.simpan(product);
-        //setelah dtanya disimpan, mau kembali ke halaman mana
-        return "redirect:/product/"; 
+    public String simpan(@ModelAttribute Product product, @RequestParam Long id){
+        // Ambil kategori produk berdasarkan ID dari database
+    ProductCategory kategori = productCategoryRepository.findById(id).orElse(null);
+
+    if (kategori!= null) {
+        // Hubungkan produk dengan kategori yang dipilih
+        product.setKategori(kategori);
+        // kategori.getClass().add(ka);
+    }
+
+    // Simpan produk ke database
+    // productRepository.save(product);
+    productService.simpan(product);
+
+    return "redirect:/product/";
+    
+    
+    
+    
+        //     // ProductCategory kategori = product.getKategori();
+    //    String kategorinya = product.getKategori().getKategori();
+
+    //    ProductCategory kategori = new ProductCategory();
+    //    kategori.setKategori(kategorinya);
+
+    // //    productCategoryRepository.save(kategori);
+
+    //    product.setKategori(kategori);
+       
+    //     //menjalankan perintah di fungsi 
+    //     this.productService.simpan(product);
+    //     //setelah dtanya disimpan, mau kembali ke halaman mana
+    //     return "redirect:/product/"; 
     }
 
 

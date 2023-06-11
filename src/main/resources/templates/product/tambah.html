@@ -35,6 +35,15 @@
           <!-- th object tu untuk binding -->
           <!-- product di objek iru harus sama di controller -->
             <form th:action="@{/product/simpan}" th:object="${product}" method="post">
+              
+              <div class="mb-3">
+                <label class="form-label">Kategori</label>
+                <select name="kategori" class="form-select">
+                  <option value="">Pilih kategori</option>
+                  <option th:each="kategori : ${kategori}" th:value="${kategori.id}" th:text="${kategori.kategori}"></option>
+                </select>
+              </div>
+            
               <div class="mb-3">
                 <label class="form-label">Nama Produk</label>
                 <!-- input name sesuai dengan nama atribut -->
