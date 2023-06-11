@@ -43,12 +43,16 @@ public class CustomerController {
     public String simpan(@ModelAttribute Customer customer) {
         // Mengambil username dan password dari request
     String username = customer.getUser().getUsername();
+    String email = customer.getUser().getEmail();
     String password = customer.getUser().getPassword();
+    String role = customer.getUser().getRole();
 
     // Membuat objek User baru dan mengeset username dan password
     User user = new User();
     user.setUsername(username);
+    user.setEmail(email);
     user.setPassword(password);
+    user.setRole(role);
 
     // Menyimpan objek User ke dalam UserRepository
     userRepository.save(user);

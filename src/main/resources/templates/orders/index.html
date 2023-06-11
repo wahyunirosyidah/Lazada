@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Title</title>
+  <title>Customer</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -50,9 +50,9 @@
                 <tbody>
                   <!-- //pada setiap item di dalam "datanya", apa yang dilakukan -->
                   <!-- yang di {} diambil dari model index controler -->
-                  <tr th:each="item : ${datacustomer}">
-                    <th scope="row" th:text="${item.id}">1</th>
-                    <td th:text="${item.user}">Mark</td>
+                  <tr th:each="item, itemStat  : ${datacustomer}" >
+                    <th scope="row" th:text="${itemStat.count}">1</th>
+                    <td th:text="${item.user.role}">Mark</td>
                     <td th:text="${item.namaLengkap}">Otto</td>
                     <td th:text="${item.nomorHp}">Otto</td>
                     <td th:text="${item.alamat}">Otto</td>

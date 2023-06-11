@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Title</title>
+  <title>Product Category</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -45,8 +45,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr th:each="item : ${datanyaCategory}">
-                    <th scope="row"  th:text="${item.id}">1</th>
+                  <tr th:each="item, itemStat  : ${datanyaCategory}">
+                    <th scope="row" th:text="${itemStat.count}">1</th>
                     <td  th:text="${item.kategori}">Mark</td>
                     <td class="text-center">
                       <a th:href="@{'/productcategory/view/'+${item.id}}"><div class="fa fa-eye me-3"></div></a>

@@ -2,7 +2,7 @@ package com.pbob.lazada.Orders;
 
 import java.util.Date;
 
-// import com.pbob.lazada.Customer.Customer;
+import com.pbob.lazada.Customer.Customer;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -19,20 +19,20 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    // private Date tanggalOrder;
-    //  @OneToOne(cascade = CascadeType.ALL)
-    // // private Customer customer;
-    // private String status;
-    // private Boolean paymentStatus;
-    // private String shippingStatus;
+    private Date tanggalOrder;
+     @OneToOne(cascade = CascadeType.ALL)
+    private Customer customer;
+    private String status;
+    private Boolean paymentStatus;
+    private String shippingStatus;
 
 
-    // public Orders(Date tanggalOrder, Customer customer, String status, Boolean paymentStatus, String shippingStatus) {
-    //     this.tanggalOrder = tanggalOrder;
-    //     this.customer = customer;
-    //     this.status = status;
-    //     this.paymentStatus = paymentStatus;
-    //     this.shippingStatus = shippingStatus;
-    // }
+    public Orders(Date tanggalOrder, Customer customer, String status, Boolean paymentStatus, String shippingStatus) {
+        this.tanggalOrder = tanggalOrder;
+        this.customer = customer;
+        this.status = status;
+        this.paymentStatus = paymentStatus;
+        this.shippingStatus = shippingStatus;
+    }
 
 }

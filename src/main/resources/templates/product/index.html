@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Title</title>
+  <title>Product</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -51,9 +51,9 @@
                 <tbody>
                   <!-- //pada setiap item di dalam "datanya", apa yang dilakukan -->
                   <!-- yang di {} diambil dari model index controler -->
-                  <tr th:each="item : ${datanya}">
-                    <th scope="row" th:text="${item.id}">1</th>
-                    <td th:text="${item.kategori}">Mark</td>
+                  <tr th:each="item, itemStat : ${datanya}">
+                    <th scope="row" th:text="${itemStat.count}">1</th>
+                    <td th:text="${item.kategori.kategori}">Mark</td>
                     <td th:text="${item.nama}">Mark</td>
                     <td th:text="${item.harga}">Otto</td>
                     <td th:text="${item.stok}">Otto</td>
@@ -62,8 +62,8 @@
                       <a th:href="@{'/product/view/'+${item.id}}"><div class="fa fa-eye me-3"></div></a>
                       <a th:href="@{'/product/edit/'+${item.id}}"><div class="fa fa-edit me-3"></div></a>
                       <a th:href="@{'/product/hapus/'+${item.id}}"><div class="fa fa-trash-can"></div></a>
-                    </td>                   
-                  </tr>  
+                    </td>
+                  </tr>
                 </tbody>
               </table>
               <div class="col">
