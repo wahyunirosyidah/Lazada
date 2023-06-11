@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
 
@@ -20,11 +22,13 @@ public class Orders {
     private Long id;
     
     private Date tanggalOrder;
-     @OneToOne(cascade = CascadeType.ALL)
-    private Customer customer;
     private String status;
     private Boolean paymentStatus;
     private String shippingStatus;
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
 
     public Orders(Date tanggalOrder, Customer customer, String status, Boolean paymentStatus, String shippingStatus) {
