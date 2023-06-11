@@ -58,39 +58,40 @@ public class ProductController {
 
     //menyimpan data yang ditambahkan
     @PostMapping("/product/simpan")
-    public String simpan(@ModelAttribute Product product, @RequestParam Long id){
-        // Ambil kategori produk berdasarkan ID dari database
-    ProductCategory kategori = productCategoryRepository.findById(id).orElse(null);
+    public String simpan(@ModelAttribute Product product){
+    // public String simpan(@ModelAttribute Product product, @RequestParam Long id){
+    //     // Ambil kategori produk berdasarkan ID dari database
+    // ProductCategory kategori = productCategoryRepository.findById(id).orElse(null);
 
-    if (kategori!= null) {
-        // Hubungkan produk dengan kategori yang dipilih
-        product.setKategori(kategori);
-        // kategori.getClass().add(ka);
-    }
+    // if (kategori!= null) {
+    //     // Hubungkan produk dengan kategori yang dipilih
+    //     product.setKategori(kategori);
+    //     // kategori.getClass().add(ka);
+    // }
 
-    // Simpan produk ke database
-    // productRepository.save(product);
-    productService.simpan(product);
+    // // Simpan produk ke database
+    // // productRepository.save(product);
+    // productService.simpan(product);
 
-    return "redirect:/product/";
+    // return "redirect:/product/";
     
     
     
     
-        //     // ProductCategory kategori = product.getKategori();
-    //    String kategorinya = product.getKategori().getKategori();
+            // ProductCategory kategori = product.getKategori();
+       String kategorinya = product.getKategori().getKategori();
 
-    //    ProductCategory kategori = new ProductCategory();
-    //    kategori.setKategori(kategorinya);
+       ProductCategory kategori = new ProductCategory();
+       kategori.setKategori(kategorinya);
 
-    // //    productCategoryRepository.save(kategori);
+    //    productCategoryRepository.save(kategori);
 
-    //    product.setKategori(kategori);
+       product.setKategori(kategori);
        
-    //     //menjalankan perintah di fungsi 
-    //     this.productService.simpan(product);
-    //     //setelah dtanya disimpan, mau kembali ke halaman mana
-    //     return "redirect:/product/"; 
+        //menjalankan perintah di fungsi 
+        this.productService.simpan(product);
+        //setelah dtanya disimpan, mau kembali ke halaman mana
+        return "redirect:/product/"; 
     }
 
 
