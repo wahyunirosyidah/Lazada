@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerService {
-    
-     private final CustomerRepository customerRepository;
+
+    private final CustomerRepository customerRepository;
 
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
@@ -30,5 +30,11 @@ public class CustomerService {
         this.customerRepository.deleteById(id);
     }
 
+    public void hapusByUserId(Long userId) {
+         Customer customer = customerRepository.findById(userId).orElse(null);
+        if (customer != null) {
+            customerRepository.delete(customer);
+        }
+    }
 
 }

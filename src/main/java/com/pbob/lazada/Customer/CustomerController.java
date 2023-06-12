@@ -15,7 +15,6 @@ import com.pbob.lazada.User.UserRepository;
 @Controller
 public class CustomerController {
 
-    
     private final CustomerService customerService;
     private final UserRepository userRepository;
 
@@ -41,17 +40,19 @@ public class CustomerController {
 
     @PostMapping("/customer/simpan")
     public String simpan(@ModelAttribute Customer customer) {
-        // Mengambil username dan password dari request
+         // Mengambil username, password, email, dan role dari request
     String username = customer.getUser().getUsername();
-    String email = customer.getUser().getEmail();
     String password = customer.getUser().getPassword();
+    String email = customer.getUser().getEmail();
+
+    // Mengambil role dari objek User
     String role = customer.getUser().getRole();
 
-    // Membuat objek User baru dan mengeset username dan password
+    // Membuat objek User baru dan mengeset username, password, email, dan role
     User user = new User();
     user.setUsername(username);
-    user.setEmail(email);
     user.setPassword(password);
+    user.setEmail(email);
     user.setRole(role);
 
     // Menyimpan objek User ke dalam UserRepository
@@ -60,8 +61,8 @@ public class CustomerController {
     // Mengeset objek User pada objek Customer
     customer.setUser(user);
 
-        this.customerService.simpan(customer);
-        return "redirect:/customer/";
+    this.customerService.simpan(customer);
+    return "redirect:/customer/";
     }
 
     @GetMapping("/customer/view/{id}")
@@ -76,11 +77,16 @@ public class CustomerController {
         @GetMapping("/customer/hapus/{id}")
         public String hapus(@PathVariable Long id){
         this.customerService.hapus(id);
-
-
         //karena mengambil data baru dari database
         return "redirect:/customer/"; 
     }
 
-    
+
+
+
+
+
+
+
+
 }

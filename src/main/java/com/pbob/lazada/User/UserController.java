@@ -9,15 +9,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.pbob.lazada.Customer.CustomerService;
+
 @Controller
 public class UserController {
 
     private final UserService userService;
+     private final CustomerService customerService;
 
-
-    public UserController(UserService userService) {
+    public UserController(UserService userService, CustomerService customerService) {
         this.userService = userService;
+        this.customerService = customerService;
     }
+
+
+
 
     @GetMapping("/user/") 
     public String index(Model model){
@@ -62,6 +68,8 @@ public class UserController {
 
         @GetMapping("/user/hapus/{id}")
     public String hapus(@PathVariable Long id){
+        // Menghapus customer terlebih dahulu
+        customerService.hapusByUserId(id);
         this.userService.hapus(id);
         return "redirect:/user/";
     }

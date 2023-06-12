@@ -59,25 +59,6 @@ public class ProductController {
     //menyimpan data yang ditambahkan
     @PostMapping("/product/simpan")
     public String simpan(@ModelAttribute Product product){
-    // public String simpan(@ModelAttribute Product product, @RequestParam Long id){
-    //     // Ambil kategori produk berdasarkan ID dari database
-    // ProductCategory kategori = productCategoryRepository.findById(id).orElse(null);
-
-    // if (kategori!= null) {
-    //     // Hubungkan produk dengan kategori yang dipilih
-    //     product.setKategori(kategori);
-    //     // kategori.getClass().add(ka);
-    // }
-
-    // // Simpan produk ke database
-    // // productRepository.save(product);
-    // productService.simpan(product);
-
-    // return "redirect:/product/";
-    
-    
-    
-    
             // ProductCategory kategori = product.getKategori();
        String kategorinya = product.getKategori().getKategori();
 

@@ -11,7 +11,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import lombok.Data;
 
 @Data
@@ -29,6 +28,10 @@ public class Orders {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
     private Customer customer;
+
+
+    public Orders() {
+    }
 
 
     public Orders(Date tanggalOrder, Customer customer, String status, Boolean paymentStatus, String shippingStatus) {

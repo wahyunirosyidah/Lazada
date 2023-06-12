@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Customer</title>
+  <title>Title</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,47 +26,46 @@
    
     <div class="row align-items-center g-2 pb-3">
         <div class="col align-items-center">
-            <h1>Daftar Orderan</h1>
+            <h1>Daftar Produk</h1>
         </div>
         
     </div>
     <div class="row justify-content-center align-items-center">
         <div class="col"><div class="table-responsive">
             <div class="col">
-                <a name="" id="" class="btn btn-success mb-3" th:href="@{/orders/tambah}" role="button">Tambah Produk</a>
+                <a name="" id="" class="btn btn-success mb-3" th:href="@{/user/tambah}" role="button">Tambah Produk</a>
             </div>
             <table class="table table-hover table-striped table-bordered">
+                <caption>Daftar Produk</caption>
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Tanggal Order</th>
-                    <th scope="col">Customer</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Status Pembayaran</th>
-                    <th scope="col">Status Pengiriman</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">password</th>
+                    <th scope="col">email</th>
+                    <th scope="col">role</th>
                     <th scope="col" style="width: 120px;" class="text-center">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
                   <!-- //pada setiap item di dalam "datanya", apa yang dilakukan -->
                   <!-- yang di {} diambil dari model index controler -->
-                  <tr th:each="item, itemStat : ${datanya}">
-                    <th scope="row" th:text="${itemStat.count}">1</th>
-                    <td th:text="${item.tanggalOrder}">Mark</td>
-                    <td th:text="${item.customer.namaLengkap}">Otto</td>
-                    <td th:text="${item.status}">Otto</td>
-                    <td th:text="${item.paymentStatus}">Otto</td>
-                    <td th:text="${item.shippingStatus}">Otto</td>
+                  <tr th:each="item : ${datauser}">
+                    <th scope="row" th:text="${item.id}">1</th>
+                    <td th:text="${item.username}">Mark</td>
+                    <td th:text="${item.password}">Otto</td>
+                    <td th:text="${item.email}">Otto</td>
+                    <td th:text="${item.role}">Otto</td>
                     <td class="text-center">
-                      <a th:href="@{'/orders/view/'+${item.id}}"><div class="fa fa-eye me-3"></div></a>
-                      <a th:href="@{'/orders/edit/'+${item.id}}"><div class="fa fa-edit me-3"></div></a>
-                      <a th:href="@{'/orders/hapus/'+${item.id}}"><div class="fa fa-trash-can"></div></a>
+                      <a th:href="@{'/user/view/'+${item.id}}"><div class="fa fa-eye me-3"></div></a>
+                      <a th:href="@{'/user/edit/'+${item.id}}"><div class="fa fa-edit me-3"></div></a>
+                      <a th:href="@{'/user/hapus/'+${item.id}}"><div class="fa fa-trash-can"></div></a>
                     </td>                   
                   </tr>  
                 </tbody>
               </table>
               <div class="col">
-                <a name="" id="" class="btn btn-success mb-3" th:href="@{/orders/tambah}" role="button">Tambah Produk</a>
+                <a name="" id="" class="btn btn-success mb-3" th:href="@{/user/tambah}" role="button">Tambah Produk</a>
             </div>
         </div>
     </div>
