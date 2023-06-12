@@ -1,5 +1,6 @@
 <div th:fragment="navbar">
     <nav class="navbar navbar-expand-sm navbar-dark bg-success mb-3">
+        
         <div class="container">
             <a class="navbar-brand" href="#">Shopee/Lazada</a>
             <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
@@ -8,8 +9,12 @@
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link active" th:href="@{/}" aria-current="page">Home <span class="visually-hidden">(current)</span></a>
+                    </li> -->
+                                        
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/product/}">Produk</a>

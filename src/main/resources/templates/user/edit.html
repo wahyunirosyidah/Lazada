@@ -42,13 +42,14 @@
               <input name="username" type="text" class="form-control" th:value="${user.username}" >
             </div>
             <div class="mb-3">
-              <label class="form-label">Password</label>
-              <input name="password" type="text" class="form-control" th:value="${user.password}" >
+              <label class="form-label">email</label>
+              <input name="email" type="email" class="form-control"  th:value="${user.email}">
             </div>
             <div class="mb-3">
-              <label class="form-label">email</label>
-              <input name="email" type="text" class="form-control"  th:value="${user.email}">
+              <label class="form-label">Password</label>
+              <input name="password" type="password" class="form-control" th:value="${user.password}" >
             </div>
+
             <div class="mb-3 col-4" >
               <label class="form-label">role</label>
               <input name="role" type="text" class="form-control"  th:value="${user.role}">
