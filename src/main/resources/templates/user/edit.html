@@ -36,35 +36,30 @@
           <!-- product di objek iru harus sama di controller -->
           <!-- dihapus karena bukan untuk menyimpan -->
           <form th:action="@{'/user/update/'+${user.id}}" th:object="${user}" method="post">
-                <div class="mb-3">
-                    <label class="form-label">username</label>
-                    <!-- input name sesuai dengan nama atribut -->
-                    <input name="username" type="text" class="form-control" th:value="${user.username}" >
-                  </div>
-                <!-- <div class="mb-3">
-                    <label class="form-label">Brand</label>
-                    <input name="brand" type="text" class="form-control" placeholder="Masukan brand dari produk"> -->
-                  <!-- </div> -->
-                  <div class="mb-3 col-4">
-                    <label class="form-label">Password</label>
-                    <input name="password" type="text" class="form-control" th:value="${user.password}" >
-                  </div>
-                  <div class="mb-3 col-4">
-                    <label class="form-label">email</label>
-                    <input name="email" type="text" class="form-control"  th:value="${user.email}">
-                  </div>
-                  <div class="col-6">
-                    <div class="mb-3">
-                      <label  class="form-label">Role</label>
-                      <textarea name="role" type="text" class="form-control" rows="10" th:text="${user.role}" ></textarea>
-                    </div>
-                  <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary me-2">Simpan</button>
-                    <a th:href="@{/role/}" class="btn btn-secondary">Batal</a></div>
-                
-            </form>
-              
-        </div>
+            <div class="mb-3">
+              <label class="form-label">username</label>
+              <!-- input name sesuai dengan nama atribut -->
+              <input name="username" type="text" class="form-control" th:value="${user.username}" >
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input name="password" type="text" class="form-control" th:value="${user.password}" >
+            </div>
+            <div class="mb-3">
+              <label class="form-label">email</label>
+              <input name="email" type="text" class="form-control"  th:value="${user.email}">
+            </div>
+            <div class="mb-3 col-4" >
+              <label class="form-label">role</label>
+              <input name="role" type="text" class="form-control"  th:value="${user.role}">
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-primary me-2">Simpan</button>
+              <a th:href="@{/user/}" class="btn btn-secondary">Batal</a></div>
+          
+      </form>
+        
+  </div>
         <!-- <div class="col-6">
           <div class="mb-3">
             <label  class="form-label">Deskripsi</label>

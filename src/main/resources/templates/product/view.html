@@ -36,7 +36,13 @@
           <!-- product di objek iru harus sama di controller -->
           <!-- dihapus karena bukan untuk menyimpan -->
             <!-- <form th:action="@{/product/simpan}" th:object="${product}" method="post"> -->
-                <div class="mb-3">
+                
+              <div class="mb-3">
+                <label class="form-label">Kategori</label>
+                <!-- input name sesuai dengan nama atribut -->
+                <input name="kategori" type="text" class="form-control" th:value="${productnyanya.kategori.kategori}" disabled="disabled">
+              </div>
+              <div class="mb-3">
                     <label class="form-label">Nama Produk</label>
                     <!-- input name sesuai dengan nama atribut -->
                     <input name="nama" type="text" class="form-control" th:value="${productnyanya.nama}" disabled="disabled">
@@ -53,7 +59,6 @@
                     <label class="form-label">Jumlah Barang</label>
                     <input name="stok" type="text" class="form-control"  th:value="${productnyanya.stok}" disabled="disabled">
                   </div>
-                  <div class="col-6">
                     <div class="mb-3">
                       <label  class="form-label">Deskripsi</label>
                       <textarea name="deskripsi" type="text" class="form-control" rows="10" th:text="${productnyanya.deskripsi}" disabled="disabled"></textarea>

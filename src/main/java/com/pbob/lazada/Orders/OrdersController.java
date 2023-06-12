@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.pbob.lazada.Customer.CustomerRepository;
@@ -66,4 +67,15 @@ public class OrdersController {
         //setelah dtanya disimpan, mau kembali ke halaman mana
         return "redirect:/orders/"; 
     }
+
+    @GetMapping("/orders/hapus/{id}")
+    public String hapus(@PathVariable Long id){
+        this.ordersService.hapus(id);
+
+
+        //karena mengambil data baru dari database
+        return "redirect:/orders/"; 
+    }
+
+
 }

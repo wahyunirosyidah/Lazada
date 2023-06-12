@@ -22,5 +22,9 @@ public class OrdersService {
         return this.ordersRepository.findAll();
     }
 
+    public void hapus(Long id) {
+        this.ordersRepository.deleteById(id);
+    }
+
     
 }

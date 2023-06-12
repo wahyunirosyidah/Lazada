@@ -41,26 +41,21 @@
                     <!-- input name sesuai dengan nama atribut -->
                     <input name="username" type="text" class="form-control" th:value="${user.username}" disabled="disabled">
                   </div>
-                <!-- <div class="mb-3">
-                    <label class="form-label">Brand</label>
-                    <input name="brand" type="text" class="form-control" placeholder="Masukan brand dari produk"> -->
-                  <!-- </div> -->
-                  <div class="mb-3 col-4">
+                  <div class="mb-3">
                     <label class="form-label">Password</label>
                     <input name="password" type="text" class="form-control" th:value="${user.password}" disabled="disabled">
                   </div>
-                  <div class="mb-3 col-4">
+                  <div class="mb-3">
                     <label class="form-label">email</label>
                     <input name="email" type="text" class="form-control"  th:value="${user.email}" disabled="disabled">
                   </div>
-                  <div class="col-6">
-                    <div class="mb-3">
-                      <label  class="form-label">Role</label>
-                      <textarea name="role" type="text" class="form-control" rows="10" th:text="${user.role}" disabled="disabled"></textarea>
-                    </div>
+                  <div class="mb-3 col-4" >
+                    <label class="form-label">role</label>
+                    <input name="role" type="text" class="form-control"  th:value="${user.role}" disabled="disabled">
+                  </div>
                   <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary me-2">Simpan</button>
-                    <a th:href="@{/role/}" class="btn btn-secondary">Batal</a></div>
+                    <a th:href="@{/user/}" class="btn btn-secondary">Batal</a></div>
                 
             <!-- </form> -->
               
