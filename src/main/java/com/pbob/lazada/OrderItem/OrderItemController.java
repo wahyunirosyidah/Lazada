@@ -21,10 +21,15 @@ public class OrderItemController {
         this.orderItemService = orderItemService;
     } 
 
+    //anotasi dari framework Spring untuk menentukan URL endpoint yang akan ditangani oleh metode index()
     @GetMapping("/orderitem/")
+    //mengambil parameter Model untuk menyimpan data yang akan dikirim ke tampilan
     public String index(Model model){
+        //ambil semua = mengembalikan daftar semua order item yang ada
         List<OrderItem> daftaOrderItem = this.orderItemService.ambilSemua();
+        //  untuk menampilkan daftar order item.
         model.addAttribute("daftarorderitem", daftaOrderItem);
+        // mengembalikan nilai String "orderitem/index", yang akan merujuk ke nama tampilan yang akan ditampilkan kepada pengguna
         return "orderitem/index";
     }
 
@@ -34,6 +39,7 @@ public class OrderItemController {
     }
 
     @PostMapping("/orderitem/simpan")
+    //Metode ini akan menyimpan objek orderItem yang diterima ke dalam database melalui orderItemService.
     public String simpan( @ModelAttribute OrderItem orderItem){
         this.orderItemService.simpan(orderItem);
         return "redirect:/orderitem/";
@@ -46,8 +52,8 @@ public class OrderItemController {
         return "orderitem/view";
     }
 
-        @GetMapping("/orderitem/edit/{id}")
-        public String edit(@PathVariable Long id, Model model){
+    @GetMapping("/orderitem/edit/{id}")
+    public String edit(@PathVariable Long id, Model model){
         OrderItem orderItem = this.orderItemService.ambilById(id);
         model.addAttribute("orderitem", orderItem);
         return "orderitem/edit";

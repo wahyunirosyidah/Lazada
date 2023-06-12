@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.pbob.lazada.Customer.CustomerRepository;
-import com.pbob.lazada.Product.Product;
-import com.pbob.lazada.ProductCategory.ProductCategory;
 import com.pbob.lazada.Customer.Customer;
 
 @Controller
@@ -31,28 +29,19 @@ public class OrdersController {
         this.customerRepository = customerRepository;
     }
 
-        @InitBinder
+    @InitBinder
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
-//     @InitBinder
-//     public void initBinder(WebDataBinder binder) {
-//     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//     dateFormat.setLenient(false);
-//     binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-// }
-
     //pakai ini utnuk mengaskses and point "/product/"  -GET
     @GetMapping("/orders/")
     public String index(Model model){
-        //data yang dikembalikan method akan disimpan di dalam suatu list dengan nama daftar product
+        //data yang dikembalikan method akan disimpan di dalam suatu list dengan nama daftarOrders
         List<Orders> daftarOrders = this.ordersService.ambilSemua();
 
-        //dafarproduct dari list di atas
-        //datanya = nama yang akan digynakan pada halaman web
-        //pada saat mau mengaskses data yang di daftar product, harus pakai datanya
+        //pada saat mau mengaskses data yang di daftar orders, harus pakai daftarOrders
         model.addAttribute("datanya", daftarOrders);
 
         return "orders/index";
@@ -64,7 +53,7 @@ public class OrdersController {
         List<Customer> customer = customerRepository.findAll();
         model.addAttribute("customer", customer);
         model.addAttribute("orders", new Orders());
-       model.addAttribute("tanggalOrder", new Date()); // Tambahkan ini untuk mengakses field tanggalOrder di form
+        model.addAttribute("tanggalOrder", new Date()); // Tambahkan ini untuk mengakses field tanggalOrder di form
         return "orders/tambah";
     }
 
@@ -72,20 +61,19 @@ public class OrdersController {
 
      //menyimpan data yang ditambahkan
    @PostMapping("/orders/simpan")
-public String simpan(@ModelAttribute Orders orders) {
-    String customernya = orders.getCustomer().getNamaLengkap();
-    Customer customer = new Customer();
-    customer.setNamaLengkap(customernya);
-    orders.setCustomer(customer);
+    public String simpan(@ModelAttribute Orders orders) {
+        String customernya = orders.getCustomer().getNamaLengkap();
+        Customer customer = new Customer();
+        customer.setNamaLengkap(customernya);
+        orders.setCustomer(customer);
 
-    this.ordersService.simpan(orders);
-    return "redirect:/orders/";
-}
+        this.ordersService.simpan(orders);
+        return "redirect:/orders/";
+    }
 
     @GetMapping("/orders/hapus/{id}")
     public String hapus(@PathVariable Long id){
         this.ordersService.hapus(id);
-
 
         //karena mengambil data baru dari database
         return "redirect:/orders/"; 
@@ -102,33 +90,28 @@ public String simpan(@ModelAttribute Orders orders) {
         return "orders/edit";
     }
 
-        @PostMapping("/orders/update/{id}")
+    @PostMapping("/orders/update/{id}")
     //model atribut untuk 
     public String update(@PathVariable Long id, @ModelAttribute Orders orders){
         Orders existingOrders = ordersService.ambilById(id);
-    String customer = orders.getCustomer().getNamaLengkap();
+        String customer = orders.getCustomer().getNamaLengkap();
 
-    Customer existingCustomer = existingOrders.getCustomer();
-    existingCustomer.setNamaLengkap(customer);
+        Customer existingCustomer = existingOrders.getCustomer();
+        existingCustomer.setNamaLengkap(customer);
 
-    // Simpan perubahan pada objek orders dan customer
-    this.customerRepository.save(existingCustomer);
-    this.ordersService.simpan(existingOrders);
+        // Simpan perubahan pada objek orders dan customer
+        this.customerRepository.save(existingCustomer);
+        this.ordersService.simpan(existingOrders);
         ordersService.ubah(id, orders);
-    return "redirect:/orders/";
+        return "redirect:/orders/";
     }
 
      @GetMapping("/orders/view/{id}")
-    public String view(@PathVariable Long id, Model model){
-
+        public String view(@PathVariable Long id, Model model){
         //mengambil data
        Orders orders = this.ordersService.ambilById(id);
-
         //mengambalikan data ke web
         model.addAttribute("orders", orders);
-
         return "orders/view";
     }
-
-
 }

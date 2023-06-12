@@ -59,7 +59,7 @@ public class ProductController {
     //menyimpan data yang ditambahkan
     @PostMapping("/product/simpan")
     public String simpan(@ModelAttribute Product product){
-            // ProductCategory kategori = product.getKategori();
+
        String kategorinya = product.getKategori().getKategori();
 
        ProductCategory kategori = new ProductCategory();
@@ -90,25 +90,25 @@ public class ProductController {
     }
 
     @GetMapping("/product/edit/{id}")
-    //tambah Path karena ada variabel id
-    //tambah model karena ketika membuka file edit, datanya sdh terisi dengan data yang ada
+        //tambah Path karena ada variabel id
+        //tambah model karena ketika membuka file edit, datanya sdh terisi dengan data yang ada
         public String edit(@PathVariable Long id, Model model){
-              // Mengambil data product
-    Product productnyanya = this.productService.ambilById(id);
+        // Mengambil data product
+        Product productnyanya = this.productService.ambilById(id);
 
-    // Mengambil data kategori
-    List<ProductCategory> kategori = productCategoryRepository.findAll();
+        // Mengambil data kategori
+        List<ProductCategory> kategori = productCategoryRepository.findAll();
 
-    // Mengirim data product dan kategori ke halaman edit
-    model.addAttribute("productnyanya", productnyanya);
-    model.addAttribute("kategori", kategori);
+        // Mengirim data product dan kategori ke halaman edit
+        model.addAttribute("productnyanya", productnyanya);
+        model.addAttribute("kategori", kategori);
 
-    return "product/edit";
+        return "product/edit";
         }
 
 
     @PostMapping("/product/update/{id}")
-    //model atribut untuk 
+    
     public String update(@PathVariable Long id, @ModelAttribute Product product){
         // this.productService.ubah(id,product);
         String kategori = product.getKategori().getKategori();
@@ -128,7 +128,6 @@ public class ProductController {
     @GetMapping("/product/hapus/{id}")
     public String hapus(@PathVariable Long id){
         this.productService.hapus(id);
-
 
         //karena mengambil data baru dari database
         return "redirect:/product/"; 

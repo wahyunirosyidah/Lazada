@@ -14,7 +14,6 @@ public class UserController {
 
     private final UserService userService;
 
-
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -33,10 +32,8 @@ public class UserController {
 
     @PostMapping("/user/simpan")
     public String simpan(@ModelAttribute User user){
-
         this.userService.simpan(user);
         return "redirect:/user/";
-
     }
 
     @GetMapping("/user/view/{id}")
@@ -57,10 +54,9 @@ public class UserController {
     public String update(@PathVariable Long id, @ModelAttribute User user){
        this.userService.ubah(id,user);
        return "redirect:/user/";
-
     }
 
-        @GetMapping("/user/hapus/{id}")
+    @GetMapping("/user/hapus/{id}")
     public String hapus(@PathVariable Long id){
         this.userService.hapus(id);
         return "redirect:/user/";
