@@ -1,9 +1,15 @@
 package com.pbob.lazada.Orders;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +31,19 @@ public class OrdersController {
         this.customerRepository = customerRepository;
     }
 
+        @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+    }
+
+//     @InitBinder
+//     public void initBinder(WebDataBinder binder) {
+//     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//     dateFormat.setLenient(false);
+//     binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+// }
+
     //pakai ini utnuk mengaskses and point "/product/"  -GET
     @GetMapping("/orders/")
     public String index(Model model){
@@ -45,28 +64,23 @@ public class OrdersController {
         List<Customer> customer = customerRepository.findAll();
         model.addAttribute("customer", customer);
         model.addAttribute("orders", new Orders());
+       model.addAttribute("tanggalOrder", new Date()); // Tambahkan ini untuk mengakses field tanggalOrder di form
         return "orders/tambah";
     }
 
 
 
      //menyimpan data yang ditambahkan
-    @PostMapping("/orders/simpan")
-    public String simpan(@ModelAttribute Orders orders){
-            // ProductCategory kategori = product.getKategori();
-       String customernya = orders.getCustomer().getNamaLengkap();
+   @PostMapping("/orders/simpan")
+public String simpan(@ModelAttribute Orders orders) {
+    String customernya = orders.getCustomer().getNamaLengkap();
+    Customer customer = new Customer();
+    customer.setNamaLengkap(customernya);
+    orders.setCustomer(customer);
 
-       Customer customer = new Customer();
-       customer.setNamaLengkap(customernya);
-
-    //    productCategoryRepository.save(kategori);
-
-       orders.setCustomer(customer);
-        //menjalankan perintah di fungsi 
-        this.ordersService.simpan(orders);
-        //setelah dtanya disimpan, mau kembali ke halaman mana
-        return "redirect:/orders/"; 
-    }
+    this.ordersService.simpan(orders);
+    return "redirect:/orders/";
+}
 
     @GetMapping("/orders/hapus/{id}")
     public String hapus(@PathVariable Long id){

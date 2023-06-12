@@ -16,25 +16,23 @@ import lombok.Data;
 @Data
 @Entity
 public class Orders {
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private Date tanggalOrder;
     private String status;
-    private Boolean paymentStatus;
+    private String paymentStatus;
     private String shippingStatus;
-    
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-
     public Orders() {
     }
 
-
-    public Orders(Date tanggalOrder, Customer customer, String status, Boolean paymentStatus, String shippingStatus) {
+    public Orders(Date tanggalOrder, Customer customer, String status, String paymentStatus, String shippingStatus) {
         this.tanggalOrder = tanggalOrder;
         this.customer = customer;
         this.status = status;

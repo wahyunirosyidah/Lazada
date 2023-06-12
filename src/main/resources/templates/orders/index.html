@@ -52,10 +52,12 @@
                   <!-- yang di {} diambil dari model index controler -->
                   <tr th:each="item, itemStat : ${datanya}">
                     <th scope="row" th:text="${itemStat.count}">1</th>
-                    <td th:text="${item.tanggalOrder}">Mark</td>
+                    <td th:utext="${#dates.format(item.tanggalOrder, 'yyyy-MM-dd')}">Mark</td>
                     <td th:text="${item.customer.namaLengkap}">Otto</td>
                     <td th:text="${item.status}">Otto</td>
-                    <td th:text="${item.paymentStatus}">Otto</td>
+                    <td>
+                      <span th:text="${item.paymentStatus} ? 'Sudah Bayar' : 'Belum Bayar'"></span>
+                    </td>
                     <td th:text="${item.shippingStatus}">Otto</td>
                     <td class="text-center">
                       <a th:href="@{'/orders/view/'+${item.id}}"><div class="fa fa-eye me-3"></div></a>

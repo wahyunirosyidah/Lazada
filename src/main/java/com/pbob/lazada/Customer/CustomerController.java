@@ -45,7 +45,7 @@ public class CustomerController {
     String username = customer.getUser().getUsername();
     String password = customer.getUser().getPassword();
     String email = customer.getUser().getEmail();
-
+        
     // Mengambil role dari objek User
     String role = customer.getUser().getRole();
 
