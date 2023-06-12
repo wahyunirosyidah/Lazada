@@ -77,13 +77,15 @@ public class CustomerController {
         @GetMapping("/customer/hapus/{id}")
         public String hapus(@PathVariable Long id){
         this.customerService.hapus(id);
+
+
         //karena mengambil data baru dari database
         return "redirect:/customer/"; 
     }
 
 
 
-
+    
 
 
 

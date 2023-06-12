@@ -30,11 +30,11 @@ public class CustomerService {
         this.customerRepository.deleteById(id);
     }
 
-    public void hapusByUserId(Long userId) {
-         Customer customer = customerRepository.findById(userId).orElse(null);
-        if (customer != null) {
-            customerRepository.delete(customer);
-        }
-    }
+    // public void hapusByUserId(Long userId) {
+    //      Customer customer = customerRepository.findById(userId).orElse(null);
+    //     if (customer != null) {
+    //         customerRepository.delete(customer);
+    //     }
+    // }
 
 }
