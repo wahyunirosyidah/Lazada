@@ -31,8 +31,9 @@ public class Product {
     private Long id;
     private String nama;
     private String deskripsi;
-    private String harga;
+    private Double harga;
     private String stok;
+    private String brand;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "kategori_id")
@@ -42,24 +43,15 @@ public class Product {
     }
 
 
-    //membuat kontruktor
-    // public Product(String nama, String deskripsi, String harga, String stok) {
-    //     this.nama = nama;
-    //     this.deskripsi = deskripsi;
-    //     this.harga = harga;
-    //     this.stok = stok;
-    // }
-
-
-
-    public Product(String nama, String deskripsi, String harga, String stok, ProductCategory kategori) {
+    public Product(Long id, String nama, String deskripsi, Double harga, String stok, String brand, ProductCategory kategori) {
+        this.id = id;
         this.nama = nama;
         this.deskripsi = deskripsi;
         this.harga = harga;
         this.stok = stok;
+        this.brand = brand;
         this.kategori = kategori;
     }
 
 
-    
 }

@@ -65,7 +65,7 @@ public class ProductController {
        ProductCategory kategori = new ProductCategory();
        kategori.setKategori(kategorinya);
 
-    //    productCategoryRepository.save(kategori);
+       productCategoryRepository.save(kategori);
 
        product.setKategori(kategori);
        
@@ -92,19 +92,35 @@ public class ProductController {
     //tambah Path karena ada variabel id
     //tambah model karena ketika membuka file edit, datanya sdh terisi dengan data yang ada
         public String edit(@PathVariable Long id, Model model){
-              //mengambil data
-        Product productnyanya = this.productService.ambilById(id);
+              // Mengambil data product
+    Product productnyanya = this.productService.ambilById(id);
 
-        //mengambalikan data ke web
-        model.addAttribute("productnyanya", productnyanya);
-            return "product/edit";
+    // Mengambil data kategori
+    List<ProductCategory> kategori = productCategoryRepository.findAll();
+
+    // Mengirim data product dan kategori ke halaman edit
+    model.addAttribute("productnyanya", productnyanya);
+    model.addAttribute("kategori", kategori);
+
+    return "product/edit";
         }
 
 
     @PostMapping("/product/update/{id}")
     //model atribut untuk 
     public String update(@PathVariable Long id, @ModelAttribute Product product){
-        this.productService.ubah(id,product);
+        // this.productService.ubah(id,product);
+        String kategori = product.getKategori().getKategori();
+
+        Product product2 = productService.ambilById(id);
+        ProductCategory pkategori =product2.getKategori();
+
+        pkategori.setKategori(kategori);
+
+        this.productCategoryRepository.save(pkategori);
+        
+        this.productService.ubah(id, product);
+
         return "redirect:/product/"; 
     }
 

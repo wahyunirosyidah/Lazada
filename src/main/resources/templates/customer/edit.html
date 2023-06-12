@@ -32,31 +32,41 @@
     </div>
     <div class="row justify-content-start align-items-baseline">
         <div class="col-6">
-            <form th:action="@{'/product/update/'+${productnyanya.id}}" th:object="${product}" method="post">
-                <div class="mb-3">
+            <form th:action="@{'/customer/update/'+${customer.id}}" th:object="${customer}" method="post">
+
+            <!-- Atribut User -->
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="user.username" th:value="${customer.user.username}">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="user.password" th:value="${customer.user.password}">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="user.email" th:value="${customer.user.email}">
+            </div>
+            <div class="form-group">
+                <label for="role">Role</label>
+                <input type="text" class="form-control" id="role" name="user.role" th:value="${customer.user.role}">
+            </div>
+              
+              <div class="mb-3">
                     <label class="form-label">Nama Produk</label>
-                    <input name="nama" type="text" class="form-control" placeholder="Masukkan nama produk" th:value="${productnyanya.nama}">
+                    <input name="namaLengkap" type="text" class="form-control" placeholder="Masukkan nama produk" th:value="${customer.namaLengkap}">
                   </div>
-                <!-- <div class="mb-3">
-                    <label class="form-label">Brand</label>
-                    <input name="brand" type="text" class="form-control" placeholder="Masukan brand dari produk" >
-                  </div> -->
                   <div class="mb-3 col-4">
                     <label class="form-label">Harga (Rp.)</label>
-                    <input name="harga" type="text" class="form-control" placeholder="Masukan harga" th:value="${productnyanya.harga}">
+                    <input name="nomorHp" type="number" class="form-control" placeholder="Masukan harga" th:value="${customer.nomorHp}">
                   </div>
                   <div class="mb-3 col-4">
                     <label class="form-label">Jumlah Barang</label>
-                    <input name="stok" type="text" class="form-control" placeholder="Masukan jumlah produk" th:value="${productnyanya.harga}">
+                    <input name="alamat" type="text" class="form-control" placeholder="Masukan jumlah produk" th:value="${customer.alamat}">
                   </div>
-                  <div class="col-6">
-                    <div class="mb-3">
-                      <label  class="form-label">Deskripsi</label>
-                      <textarea name="deskripsi" type="text" class="form-control" rows="10" th:text="${productnyanya.deskripsi}"></textarea>
-                    </div>
                   <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary me-2">Simpan</button>
-                    <a th:href="@{/product/}" class="btn btn-secondary">Batal</a></div>
+                    <a th:href="@{/customer/}" class="btn btn-secondary">Batal</a></div>
       </form>
     </div>
     </div> 

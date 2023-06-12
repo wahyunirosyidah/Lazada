@@ -41,10 +41,10 @@
                     <!-- input name sesuai dengan nama atribut -->
                     <input name="nama" type="text" class="form-control" th:value="${productnyanya.nama}" disabled="disabled">
                   </div>
-                <!-- <div class="mb-3">
+                <div class="mb-3">
                     <label class="form-label">Brand</label>
-                    <input name="brand" type="text" class="form-control" placeholder="Masukan brand dari produk"> -->
-                  <!-- </div> -->
+                    <input name="brand" type="text" class="form-control" th:value="${productnyanya.brand}"  disabled="disabled">
+                  </div>
                   <div class="mb-3 col-4">
                     <label class="form-label">Harga (Rp.)</label>
                     <input name="harga" type="text" class="form-control" th:value="${productnyanya.harga}" disabled="disabled">

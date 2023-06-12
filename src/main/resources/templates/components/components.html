@@ -29,12 +29,13 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/orders/}">Orders</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kategori Produk</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownId">
-                            <a th:each="kategori : ${kategori}" th:href="@{/product/?idKategori=${kategori.id}}" class="dropdown-item" th:text="${kategori.kategori}"></a>
+                            <a th:each="kategori : ${datanyaCategory}" th:href="@{/productcategory/?idKategori=${datanyaCategory.id}}" class="dropdown-item" th:text="${kategori.kategori}"></a>
                         </div>
-                    </li>
+                    </li> -->
+                    
                 </ul>
                 <form class="d-flex my-2 my-lg-0" th:action="@{/product/}" method="get">
                     <input class="form-control me-sm-2" type="text" name="search" placeholder="Search">
@@ -44,4 +45,3 @@
         </div>
     </nav>
 </div>
-

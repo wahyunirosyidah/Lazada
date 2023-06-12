@@ -33,21 +33,34 @@
     <div class="row justify-content-start align-items-baseline">
         <div class="col-6">
             <form th:action="@{'/product/update/'+${productnyanya.id}}" th:object="${product}" method="post">
-                <div class="mb-3">
+              <!-- <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="user.password" th:value="${customer.user.password}">
+            </div>  -->
+            
+            <div class="mb-3">
+              <label class="form-label">Kategori</label>
+              <select name="kategori.kategori" id="kategori" class="form-select">
+                <option value="">Pilih kategori</option>
+                <option th:each="kategori : ${kategori}"  th:value="${kategori.kategori}" th:text="${kategori.kategori}"></option>
+              </select>
+            </div>
+              
+              <div class="mb-3">
                     <label class="form-label">Nama Produk</label>
                     <input name="nama" type="text" class="form-control" placeholder="Masukkan nama produk" th:value="${productnyanya.nama}">
                   </div>
-                <!-- <div class="mb-3">
+                <div class="mb-3">
                     <label class="form-label">Brand</label>
-                    <input name="brand" type="text" class="form-control" placeholder="Masukan brand dari produk" >
-                  </div> -->
+                    <input name="brand" type="text" class="form-control" placeholder="Masukan brand dari produk" th:value="${productnyanya.brand}">
+                  </div>
                   <div class="mb-3 col-4">
                     <label class="form-label">Harga (Rp.)</label>
                     <input name="harga" type="text" class="form-control" placeholder="Masukan harga" th:value="${productnyanya.harga}">
                   </div>
                   <div class="mb-3 col-4">
                     <label class="form-label">Jumlah Barang</label>
-                    <input name="stok" type="text" class="form-control" placeholder="Masukan jumlah produk" th:value="${productnyanya.harga}">
+                    <input name="stok" type="text" class="form-control" placeholder="Masukan jumlah produk" th:value="${productnyanya.stok}">
                   </div>
                   <div class="col-6">
                     <div class="mb-3">

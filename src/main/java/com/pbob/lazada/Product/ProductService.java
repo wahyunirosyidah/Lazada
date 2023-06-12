@@ -52,10 +52,8 @@ public class ProductService {
         data_lama.setHarga(product.getHarga());
         data_lama.setStok(product.getStok());
         data_lama.setDeskripsi(product.getDeskripsi());
-
+         data_lama.setBrand(product.getBrand());
         this.productRepository.save(data_lama);
-
-
     }
 
     public void hapus(Long id) {

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.pbob.lazada.Product.Product;
 import com.pbob.lazada.User.User;
 import com.pbob.lazada.User.UserRepository;
 
@@ -83,12 +84,52 @@ public class CustomerController {
         return "redirect:/customer/"; 
     }
 
-
-
     
+    @GetMapping("/customer/edit/{id}")
+    //tambah Path karena ada variabel id
+    //tambah model karena ketika membuka file edit, datanya sdh terisi dengan data yang ada
+        public String edit(@PathVariable Long id, Model model){
+              //mengambil data
+        Customer customer = this.customerService.ambilById(id);
+
+        //mengambalikan data ke web
+        model.addAttribute("customer", customer);
+            return "customer/edit";
+        }
+
+      @PostMapping("/customer/update/{id}")
+    //model atribut untuk 
+    public String update(@PathVariable Long id, @ModelAttribute Customer customer){
+        // this.customerService.ubah(id,customer);
+        // return "redirect:/customer/"; 
+
+         // Mengambil data pengguna dari form
+    String username = customer.getUser().getUsername();
+    String password = customer.getUser().getPassword();
+    String email = customer.getUser().getEmail();
+    String role = customer.getUser().getRole();
+
+    // Mengambil objek Customer yang akan diubah
+    Customer existingCustomer = customerService.ambilById(id);
+    User existingUser = existingCustomer.getUser();
+
+    // Mengupdate data pengguna
+    existingUser.setUsername(username);
+    existingUser.setPassword(password);
+    existingUser.setEmail(email);
+    existingUser.setRole(role);
+
+    // Menyimpan perubahan data pengguna
+    userRepository.save(existingUser);
+
+    // Menyimpan perubahan data Customer
+    customerService.ubah(id, customer);
+
+    return "redirect:/customer/";
 
 
 
+    }
 
 
 }
