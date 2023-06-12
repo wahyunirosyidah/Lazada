@@ -22,6 +22,7 @@ public class Orders {
 
     private Date tanggalOrder;
     private String status;
+    private String jenisPembayaran;
     private String paymentStatus;
     private String shippingStatus;
 
@@ -32,12 +33,16 @@ public class Orders {
     public Orders() {
     }
 
-    public Orders(Date tanggalOrder, Customer customer, String status, String paymentStatus, String shippingStatus) {
+
+    public Orders(Long id, Date tanggalOrder, String status, String jenisPembayaran, String paymentStatus, String shippingStatus, Customer customer) {
+        this.id = id;
         this.tanggalOrder = tanggalOrder;
-        this.customer = customer;
         this.status = status;
+        this.jenisPembayaran = jenisPembayaran;
         this.paymentStatus = paymentStatus;
         this.shippingStatus = shippingStatus;
+        this.customer = customer;
     }
+
 
 }

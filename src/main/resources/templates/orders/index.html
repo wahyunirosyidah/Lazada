@@ -42,6 +42,7 @@
                     <th scope="col">Tanggal Order</th>
                     <th scope="col">Customer</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Jenis Pembayaran</th>
                     <th scope="col">Status Pembayaran</th>
                     <th scope="col">Status Pengiriman</th>
                     <th scope="col" style="width: 120px;" class="text-center">Aksi</th>
@@ -55,6 +56,7 @@
                     <td th:utext="${#dates.format(item.tanggalOrder, 'yyyy-MM-dd')}">Mark</td>
                     <td th:text="${item.customer.namaLengkap}">Otto</td>
                     <td th:text="${item.status}">Otto</td>
+                    <td th:text="${item.jenisPembayaran}">Otto</td>
                     <td>
                       <span th:text="${item.paymentStatus} ? 'Sudah Bayar' : 'Belum Bayar'"></span>
                     </td>

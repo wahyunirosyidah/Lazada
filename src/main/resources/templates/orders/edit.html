@@ -32,24 +32,49 @@
     </div>
     <div class="row justify-content-start align-items-baseline">
         <div class="col-6">
-            <form th:action="@{'/orderitem/update/'+${orderitem.id}}" th:object="${orderitem}" method="post">
+            <form th:action="@{'/orders/update/'+${orders.id}}" th:object="${orders}" method="post">
               <div class="mb-3">
-                <label class="form-label">Order ID</label>
-                <!-- input name sesuai dengan nama atribut -->
-                <input name="orderId" type="number" class="form-control" placeholder="Masukkan nama produk" th:value="${orderitem.orderId}" >
-                <!-- <input id.use="id" type="hidden"  th:value="${user.id}" > -->
+                <div class="mb-3 col-4">
+                  <label class="form-label">Nama Pelanggan</label>
+                  <input name="customer.namaLengkap" type="text" class="form-control" th:value="${orders.customer.namaLengkap}">
+                </div>
+
+  
+              
+              <div class="mb-3">
+              <label class="form-label">Tanggal Order</label>
+              <input name="tanggalOrder" type="text" class="form-control" th:value="${#dates.format(orders.tanggalOrder, 'yyyy-MM-dd')}" />
+                </div>
+        
+                  <div class="mb-3 col-4">
+                    <label class="form-label">Status</label>
+                    <input name="status" type="text" class="form-control" th:value="${orders.status}">
+                  </div>
+  
+                  <div class="mb-3 col-4">
+                    <label class="form-label">Jenis Pembayaran</label>
+                    <input name="jenisPembayaran" type="text" class="form-control" th:value="${orders.jenisPembayaran}">
+                  </div>
+              
+                  <div class="mb-3">
+                    <div class="form-check">
+                      <input name="paymentStatus" type="checkbox" class="form-check-input" th:checked="${orders.paymentStatus}" />
+                      <label class="form-check-label">Sudah Bayar</label>
+                    </div>
+                  </div>
+                <div class="mb-3">
+                    <label class="form-label">Shipping Status</label>
+                    <input name="shippingStatus" type="text" class="form-control" th:value="${orders.shippingStatus}">
+                  </div>
+                </div>
+
+              
+              <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                <a th:href="@{/orders/}" class="btn btn-secondary">Batal</a></div>
               </div>
-              <div class="mb-3 col-4">
-                <label class="form-label">Product ID</label>
-                <input name="productId" type="number" class="form-control" placeholder="Masukan harga" th:value="${orderitem.productId}">
-              </div>
-              <div class="mb-3 col-4">
-                <label class="form-label">Jumlah</label>
-                <input name="jumlah" type="number" class="form-control" placeholder="Masukan jumlah produk" th:value="${orderitem.jumlah}">
-              </div>
-                  <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary me-2">Simpan</button>
-                    <a th:href="@{/orderitem/}" class="btn btn-secondary">Batal</a></div>
+          </div> 
+
       </form>
     </div>
     </div> 

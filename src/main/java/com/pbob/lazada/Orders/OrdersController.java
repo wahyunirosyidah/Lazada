@@ -91,5 +91,32 @@ public String simpan(@ModelAttribute Orders orders) {
         return "redirect:/orders/"; 
     }
 
+    @GetMapping("/orders/edit/{id}")
+    public String edit(@PathVariable Long id, Model model){
+        Orders orders = this.ordersService.ambilById(id);
+
+        List<Customer> customer = customerRepository.findAll();
+
+        model.addAttribute("orders", orders);
+        model.addAttribute("customer", customer);
+        return "orders/edit";
+    }
+
+        @PostMapping("/orders/update/{id}")
+    //model atribut untuk 
+    public String update(@PathVariable Long id, @ModelAttribute Orders orders){
+        Orders existingOrders = ordersService.ambilById(id);
+    String customer = orders.getCustomer().getNamaLengkap();
+
+    Customer existingCustomer = existingOrders.getCustomer();
+    existingCustomer.setNamaLengkap(customer);
+
+    // Simpan perubahan pada objek orders dan customer
+    this.customerRepository.save(existingCustomer);
+    this.ordersService.simpan(existingOrders);
+        ordersService.ubah(id, orders);
+    return "redirect:/orders/";
+    }
+
 
 }

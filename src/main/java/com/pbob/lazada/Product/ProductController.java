@@ -69,6 +69,7 @@ public class ProductController {
 
        product.setKategori(kategori);
        
+       
         //menjalankan perintah di fungsi 
         this.productService.simpan(product);
         //setelah dtanya disimpan, mau kembali ke halaman mana
