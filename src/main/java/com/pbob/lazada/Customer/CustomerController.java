@@ -67,11 +67,14 @@ public class CustomerController {
     }
 
     @GetMapping("/customer/view/{id}")
-    public String view(@PathVariable Long id, Model model) {
-        
-        
+    public String view(@PathVariable Long id, Model model){
+
+        //mengambil data
         Customer customer = this.customerService.ambilById(id);
-        model.addAttribute("datacustomer", customer);
+
+        //mengambalikan data ke web
+        model.addAttribute("customer", customer);
+
         return "customer/view";
     }
 

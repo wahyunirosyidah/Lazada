@@ -34,12 +34,13 @@
         <div class="col-6">
           <!-- th object tu untuk binding -->
           <!-- product di objek iru harus sama di controller -->
-          <div class="mb-3">
-            <label class="form-label">Role</label>
-            <!-- input name sesuai dengan nama atribut -->
-            <input name="user.role" type="text" class="form-control" placeholder="Masukkan nama produk" value="Pembeli" disabled="disabled">
-          </div>
+
             <form th:action="@{/customer/simpan}" th:object="${customer}" method="post">
+              <div class="mb-3">
+                <label class="form-label">Role</label>
+                <!-- input name sesuai dengan nama atribut -->
+                <input name="user.role" type="text" class="form-control" value="Pembeli" >
+              </div>
               <div class="mb-3">
                 <label class="form-label">Username</label>
                 <!-- input name sesuai dengan nama atribut -->
