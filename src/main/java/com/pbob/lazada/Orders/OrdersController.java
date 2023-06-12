@@ -118,5 +118,17 @@ public String simpan(@ModelAttribute Orders orders) {
     return "redirect:/orders/";
     }
 
+     @GetMapping("/orders/view/{id}")
+    public String view(@PathVariable Long id, Model model){
+
+        //mengambil data
+       Orders orders = this.ordersService.ambilById(id);
+
+        //mengambalikan data ke web
+        model.addAttribute("orders", orders);
+
+        return "orders/view";
+    }
+
 
 }

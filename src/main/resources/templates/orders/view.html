@@ -32,50 +32,54 @@
     </div>
     <div class="row justify-content-start align-items-baseline">
         <div class="col-6">
-          <!-- th object tu untuk binding -->
-          <!-- product di objek iru harus sama di controller -->
-          <!-- dihapus karena bukan untuk menyimpan -->
-            <!-- <form th:action="@{/product/simpan}" th:object="${product}" method="post"> -->
-                <div class="mb-3">
-                    <label class="form-label">Nama Produk</label>
-                    <!-- input name sesuai dengan nama atribut -->
-                    <input name="nama" type="text" class="form-control" th:value="${productnyanya.nama}" disabled="disabled">
-                  </div>
-                <!-- <div class="mb-3">
-                    <label class="form-label">Brand</label>
-                    <input name="brand" type="text" class="form-control" placeholder="Masukan brand dari produk"> -->
-                  <!-- </div> -->
-                  <div class="mb-3 col-4">
-                    <label class="form-label">Harga (Rp.)</label>
-                    <input name="harga" type="text" class="form-control" th:value="${productnyanya.harga}" disabled="disabled">
-                  </div>
-                  <div class="mb-3 col-4">
-                    <label class="form-label">Jumlah Barang</label>
-                    <input name="stok" type="text" class="form-control"  th:value="${productnyanya.stok}" disabled="disabled">
-                  </div>
-                  <div class="col-6">
-                    <div class="mb-3">
-                      <label  class="form-label">Deskripsi</label>
-                      <textarea name="deskripsi" type="text" class="form-control" rows="10" th:text="${productnyanya.deskripsi}" disabled="disabled"></textarea>
-                    </div>
-                  <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary me-2">Simpan</button>
-                    <a th:href="@{/product/}" class="btn btn-secondary">Batal</a></div>
-                
-            <!-- </form> -->
+            <!-- <form th:action="@{'/orders/update/'+${orders.id}}" th:object="${orders}" method="post"> -->
+              <div class="mb-3">
+                <div class="mb-3 col-4">
+                  <label class="form-label">Nama Pelanggan</label>
+                  <input name="customer.namaLengkap" type="text" class="form-control" th:value="${orders.customer.namaLengkap}" disabled="disabled">
+                </div>
+
+  
               
-        </div>
-        <!-- <div class="col-6">
-          <div class="mb-3">
-            <label  class="form-label">Deskripsi</label>
-            <textarea name="deskripsi" type="text" class="form-control" rows="10" th:value="${productnyanya.deskripsi}" disabled="disabled"></textarea>
-          </div>
-        </div> -->
+              <div class="mb-3">
+              <label class="form-label">Tanggal Order</label>
+              <input name="tanggalOrder" type="text" class="form-control" th:value="${#dates.format(orders.tanggalOrder, 'yyyy-MM-dd')}" disabled="disabled"/>
+                </div>
+        
+                  <div class="mb-3 ">
+                    <label class="form-label">Status</label>
+                    <input name="status" type="text" class="form-control" th:value="${orders.status}" disabled="disabled">
+                  </div>
+  
+                  <div class="mb-3 col-4">
+                    <label class="form-label">Jenis Pembayaran</label>
+                    <input name="jenisPembayaran" type="text" class="form-control" th:value="${orders.jenisPembayaran}" disabled="disabled">
+                  </div>
+              
+                  <div class="mb-3">
+                    <div class="form-check">
+                      <input name="paymentStatus" type="checkbox" class="form-check-input" th:checked="${orders.paymentStatus}" disabled="disabled"/>
+                      <label class="form-check-label">Sudah Bayar</label>
+                    </div>
+                  </div>
+                <div class="mb-3">
+                    <label class="form-label">Shipping Status</label>
+                    <input name="shippingStatus" type="text" class="form-control" th:value="${orders.shippingStatus}" disabled="disabled">
+                  </div>
+                </div>
+
+              
+              <div class="d-flex justify-content-end">
+                <!-- <button type="submit" class="btn btn-primary me-2">Simpan</button> -->
+                <a th:href="@{/orders/}" class="btn btn-secondary">Kembali</a></div>
+              </div>
+          </div> 
+
+      </form>
     </div>
-    
+    </div> 
   </div>
-    
-    
+
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
